@@ -17,10 +17,6 @@ int main(void)
 
     if (gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE) < 0) return 0;
 
-#ifdef CONFIG_LED_DEBUG
-    LOG_INF("LED DEBUG option enabled");
-#endif
-
     while (1) {
         if (gpio_pin_toggle_dt(&led) < 0) return 0;
 
