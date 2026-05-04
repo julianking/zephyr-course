@@ -50,6 +50,4 @@ static DEVICE_API(sensor, api_homework_l6) = {
 };
 
 
-#define LED_SENSOR_DEFINE(inst)
-
 DEVICE_DT_INST_DEFINE(0, led_my_init, NULL, NULL, NULL, POST_KERNEL, 80, &api_homework_l6);
