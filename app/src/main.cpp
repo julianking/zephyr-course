@@ -1,6 +1,7 @@
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
+#include <zephyr/drivers/sensor.h>
 
 /* The devicetree node identifier for the "led0" alias. */
 #define LED_NODE DT_ALIAS(app_led)
@@ -11,17 +12,20 @@ LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 
 int main(void)
 {
+    const struct device *driver = DEVICE_DT_GET(DT_NODELABEL(led_sensor0));
+    struct sensor_value val = {0};
+
     bool led_state = true;
 
-    if (!gpio_is_ready_dt(&led)) return 0;
-
-    if (gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE) < 0) return 0;
-
     while (1) {
-        if (gpio_pin_toggle_dt(&led) < 0) return 0;
+        if (led_state) {
+            int ret = sensor_channel_get(driver, SENSOR_CHAN_ALL, &val);
+        }
+        else {
+            int ret = sensor_sample_fetch(driver);
+        }
 
         led_state = !led_state;
-        LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
         k_msleep(CONFIG_APP_HEARTBEAT_PERIOD_MS);
     }
     return 0;

@@ -1,0 +1,3 @@
+description: Custom LED sensor-based system
+compatible: "my,led_sensor"
+include: base.yaml
