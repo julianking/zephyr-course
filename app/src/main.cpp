@@ -1,7 +1,7 @@
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
-#include <zephyr/drivers/sensor.h>
+#include "../drivers/led_sensor/led_sensor.h"
 
 /* The devicetree node identifier for the "led0" alias. */
 #define LED_NODE DT_ALIAS(app_led)
@@ -17,6 +17,8 @@ int main(void)
 
     bool led_state = true;
 
+    my_led_sensor_set_blink_rate(driver, CONFIG_APP_HEARTBEAT_PERIOD_MS);
+
     while (1) {
         if (led_state) {
             int ret = sensor_channel_get(driver, SENSOR_CHAN_ALL, &val);
@@ -26,7 +28,6 @@ int main(void)
         }
 
         led_state = !led_state;
-        k_msleep(CONFIG_APP_HEARTBEAT_PERIOD_MS);
     }
     return 0;
 }
