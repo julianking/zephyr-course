@@ -1,0 +1,45 @@
+cmake:
+  application:
+    configuration-dir: '/home/julian/z_wksp/zephyr-course/tests/ring_buf'
+    source-dir: '/home/julian/z_wksp/zephyr-course/tests/ring_buf'
+  board:
+    name: 'native_sim'
+    path:
+     - '/home/julian/z_wksp/deps/zephyr/boards/native/native_sim'
+    qualifiers: 'native'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - '/home/julian/z_wksp/deps/zephyr/dts/bindings'
+    files:
+     - '/home/julian/z_wksp/deps/zephyr/boards/native/native_sim/native_sim.dts'
+    include-dirs:
+     - '/home/julian/z_wksp/deps/modules/hal/stm32/dts'
+     - '/home/julian/z_wksp/deps/zephyr/include'
+     - '/home/julian/z_wksp/deps/zephyr/include/zephyr'
+     - '/home/julian/z_wksp/deps/zephyr/dts/common'
+     - '/home/julian/z_wksp/deps/zephyr/dts/vendor'
+     - '/home/julian/z_wksp/deps/zephyr/dts/rx'
+     - '/home/julian/z_wksp/deps/zephyr/dts/x86'
+     - '/home/julian/z_wksp/deps/zephyr/dts/xtensa'
+     - '/home/julian/z_wksp/deps/zephyr/dts/sparc'
+     - '/home/julian/z_wksp/deps/zephyr/dts/riscv'
+     - '/home/julian/z_wksp/deps/zephyr/dts/posix'
+     - '/home/julian/z_wksp/deps/zephyr/dts/arm64'
+     - '/home/julian/z_wksp/deps/zephyr/dts/arm'
+     - '/home/julian/z_wksp/deps/zephyr/dts/arc'
+     - '/home/julian/z_wksp/deps/zephyr/dts'
+  kconfig:
+    files:
+     - '/home/julian/z_wksp/deps/zephyr/boards/native/native_sim/native_sim_defconfig'
+     - '/home/julian/z_wksp/zephyr-course/tests/ring_buf/prj.conf'
+     - '/home/julian/z_wksp/zephyr-course/twister-out/native_sim_native/host/homework.unit.ring_buf/zephyr/misc/generated/extra_kconfig_options.conf'
+    user-files:
+     - '/home/julian/z_wksp/zephyr-course/tests/ring_buf/prj.conf'
+  toolchain:
+    name: 'host'
+    path: ''
+  zephyr:
+    version: '4.2.0'
+    zephyr-base: '/home/julian/z_wksp/deps/zephyr'
+version: '0.1.0'
