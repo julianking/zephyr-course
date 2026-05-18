@@ -15,19 +15,13 @@ int main(void)
     const struct device *driver = DEVICE_DT_GET(DT_NODELABEL(led_sensor0));
     struct sensor_value val = {0};
 
-    bool led_state = true;
+    if (!device_is_ready(driver))
+        return -1;
 
-    my_led_sensor_set_blink_rate(driver, CONFIG_APP_HEARTBEAT_PERIOD_MS);
 
     while (1) {
-        if (led_state) {
-            int ret = sensor_channel_get(driver, SENSOR_CHAN_ALL, &val);
-        }
-        else {
-            int ret = sensor_sample_fetch(driver);
-        }
 
-        led_state = !led_state;
+       k_msleep(1000);
     }
     return 0;
 }
